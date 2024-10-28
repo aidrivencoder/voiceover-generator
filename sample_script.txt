@@ -1,0 +1,11 @@
+<character>John</character>
+<dialogue>Hello there! How are you doing today?</dialogue>
+
+<character>Sarah</character>
+<dialogue>I'm doing great, thanks for asking! How about you?</dialogue>
+
+<character>John</character>
+<dialogue>I'm fantastic! The weather is perfect for a walk in the park.</dialogue>
+
+<character>Sarah</character>
+<dialogue>You're right! We should definitely enjoy this beautiful day.</dialogue>
