@@ -10,6 +10,9 @@ A Streamlit-based application that converts script files into voiceovers using t
 - Batch generation of audio files
 - Progress tracking during generation
 - Organized output with numbered audio files
+- Built-in audio preview for generated files
+- Download functionality for individual audio files
+- File management with delete option for unwanted files
 
 ## Requirements
 
@@ -52,7 +55,8 @@ streamlit run app.py
 2. Upload a script file in the required format (see below)
 3. Assign voices to each character using the sidebar
 4. Click "Generate Voiceovers" to create audio files
-5. Find the generated audio files in the `output` directory
+5. Preview, download, or delete generated audio files directly from the UI
+6. Find the generated audio files in the `output` directory
 
 ## Script Format
 
@@ -80,6 +84,11 @@ Generated audio files will be saved in the `output` directory with the following
 002_Character.mp3
 ...
 ```
+
+Each generated audio file can be:
+- Previewed directly in the browser using the built-in audio player
+- Downloaded individually using the Download button
+- Deleted if no longer needed using the Delete button
 
 ## License
 
