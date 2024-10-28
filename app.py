@@ -24,6 +24,22 @@ def load_voices():
             voices = json.load(f)
     return voices
 
+def list_audio_files():
+    """List all generated audio files"""
+    output_dir = Path("output")
+    if output_dir.exists():
+        return sorted(list(output_dir.glob("*.mp3")))
+    return []
+
+def delete_audio_file(file_path):
+    """Delete an audio file"""
+    try:
+        os.remove(file_path)
+        return True
+    except Exception as e:
+        st.error(f"Error deleting file: {str(e)}")
+        return False
+
 def main():
     st.title("Voiceover Generator")
     
@@ -82,6 +98,35 @@ def main():
             
             status_text.text("All audio files generated successfully!")
             st.success(f"Generated {len(script_lines)} audio files in the 'output' directory")
+
+    # Display generated audio files
+    st.subheader("Generated Audio Files")
+    audio_files = list_audio_files()
+    
+    if not audio_files:
+        st.info("No audio files generated yet.")
+    else:
+        for audio_file in audio_files:
+            col1, col2, col3 = st.columns([3, 1, 1])
+            
+            with col1:
+                st.audio(str(audio_file))
+            
+            with col2:
+                with open(audio_file, 'rb') as f:
+                    st.download_button(
+                        label="Download",
+                        data=f,
+                        file_name=audio_file.name,
+                        mime="audio/mpeg",
+                        key=f"download_{audio_file.name}"
+                    )
+            
+            with col3:
+                if st.button("Delete", key=f"delete_{audio_file.name}"):
+                    if delete_audio_file(audio_file):
+                        st.success(f"Deleted {audio_file.name}")
+                        st.rerun()
 
 if __name__ == "__main__":
     main()
